@@ -11,16 +11,27 @@
         <item>Home</item>
         <item>Report Disaster</item>
         <item>Disaster Map</item>
-        <item>Track Person</item>
+        <item>Statistics</item>
         <item>Help</item>
         <item>About</item>
     </string-array>
     <string-array name="arr_disaster_items">
-        <item>Typhoon</item>
+        <item>Animal and Insect Infestation</item>
+        <item>Avalanches</item>
+        <item>Blizzard</item>
+        <item>Drought</item>
         <item>Earthquake</item>
+        <item>Epidemic</item>
+        <item>Extreme Temperature</item>
+        <item>Famine</item>
+        <item>Floods</item>
         <item>Landslide/Mudslide</item>
-        <item>Fire</item>
-        <item>WildFire</item>
+        <item>Tornadoes</item>
+        <item>Tsunamis</item>
+        <item>Typhoon</item>
+        <item>Volcanic Eruption</item>
+        <item>WildFire/Urban Fire</item>
+        <item>Others</item>
     </string-array>
     <array name="nav_drawer_icons">
         <item>@drawable/ic_home</item>
