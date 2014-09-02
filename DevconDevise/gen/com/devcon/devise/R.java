@@ -59,7 +59,6 @@ public final class R {
     public static final class id {
         public static final int action_load=0x7f0b0016;
         public static final int action_settings=0x7f0b0015;
-        public static final int btnDate=0x7f0b000a;
         public static final int btnSave=0x7f0b0012;
         public static final int counter=0x7f0b0006;
         public static final int datePicker=0x7f0b0013;
@@ -74,6 +73,7 @@ public final class R {
         public static final int list_slidermenu=0x7f0b0003;
         public static final int progress_actionbar=0x7f0b0000;
         public static final int scrollView1=0x7f0b0007;
+        public static final int spinnerTypeDisaster=0x7f0b000a;
         public static final int textView3=0x7f0b0008;
         public static final int timePicker=0x7f0b0014;
         public static final int title=0x7f0b0005;

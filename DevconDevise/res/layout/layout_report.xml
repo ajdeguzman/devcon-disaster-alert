@@ -36,21 +36,20 @@
 			         android:id="@+id/linearLayout1"
 			         android:layout_width="fill_parent"
 			         android:layout_height="wrap_content" >
-			
-			        <Button
-			            android:id="@+id/btnDate"
-			            style="?android:attr/spinnerStyle"
-			            android:layout_width="fill_parent"
-		            	android:textColor="#163F5F"
-			            android:layout_height="wrap_content"
-			            android:layout_weight="1.5"
-			            android:textSize="18dp" />
+
+			         <Spinner
+			             android:id="@+id/spinnerTypeDisaster"
+			             android:layout_width="fill_parent"
+		            	 android:textColor="#163F5F"
+			             android:layout_height="wrap_content"
+			             android:textSize="18dp"
+			             android:layout_weight="1.5" />
 			 </LinearLayout>
 		     
 			    <EditText
 			        android:id="@+id/txtDescription"
 			    	android:textColorHint="#858585"
-		        	android:hint="Description"
+		        	android:hint="Details"
 			        android:drawablePadding="5dp"
 	            	android:maxLength="30"
 			        android:textSize="18dp"
