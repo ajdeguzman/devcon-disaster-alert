@@ -2,27 +2,33 @@
 <resources>
 
     <string name="app_name">Disaster Alert</string>
+    <string name="app_settings">Settings</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
     
     <string-array name="nav_drawer_items">
-        <item >Home</item>
-        <item >Academic Programs</item>
-        <item >Admissions</item>
-        <item >Academic Services</item>
-        <item >Scholarships</item>
-        <item >About UCU</item>
+        <item>Home</item>
+        <item>Report Disaster</item>
+        <item>Disaster Map</item>
+        <item>Track Person</item>
+        <item>Help</item>
+        <item>About</item>
     </string-array>
-    
+    <string-array name="arr_disaster_items">
+        <item>Typhoon</item>
+        <item>Earthquake</item>
+        <item>Landslide/Mudslide</item>
+        <item>Fire</item>
+        <item>WildFire</item>
+    </string-array>
     <array name="nav_drawer_icons">
         <item>@drawable/ic_home</item>
-        <item>@drawable/ic_program</item>
-        <item>@drawable/ic_admission</item>
-        <item>@drawable/ic_academic</item>
-        <item>@drawable/ic_scholarship</item>
-        <item>@drawable/ic_contact</item>
+        <item>@drawable/ic_report</item>
+        <item>@drawable/ic_track</item>
+        <item>@drawable/ic_map</item>
+        <item>@drawable/ic_action_help</item>
+        <item>@drawable/ic_action_about</item>
     </array>
     
     <string name="desc_list_item_icon">Item Icon</string>

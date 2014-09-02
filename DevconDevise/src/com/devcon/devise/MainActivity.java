@@ -2,14 +2,10 @@ package com.devcon.devise;
 
 import java.util.ArrayList;
 
-import com.devcon.devise.R;
-import com.devcon.devise.adapter.NavDrawerListAdapter;
-import com.devcon.devise.model.NavDrawerItem;
-
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -21,6 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.devcon.devise.adapter.NavDrawerListAdapter;
+import com.devcon.devise.model.NavDrawerItem;
 
 public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
@@ -141,6 +140,7 @@ public class MainActivity extends Activity {
 		// Handle action bar actions click
 		switch (item.getItemId()) {
 		case R.id.action_settings:
+			startActivity(new Intent(getApplicationContext(), Preference.class));
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -155,6 +155,7 @@ public class MainActivity extends Activity {
 		// if nav drawer is opened, hide the action items
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
 		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+		menu.findItem(R.id.action_load).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 
@@ -166,22 +167,22 @@ public class MainActivity extends Activity {
 		Fragment fragment = null;
 		switch (position) {
 		case 0:
-			fragment = new HomeFragment();
+			fragment = new MenuHome();
 			break;
 		case 1:
-			fragment = new FindPeopleFragment();
+			fragment = new MenuReport();
 			break;
 		case 2:
-			fragment = new PhotosFragment();
+			fragment = new MenuDisaster();
 			break;
 		case 3:
-			fragment = new CommunityFragment();
+			fragment = new MenuTrack();
 			break;
 		case 4:
-			fragment = new PagesFragment();
+			fragment = new MenuHelp();
 			break;
 		case 5:
-			fragment = new WhatsHotFragment();
+			fragment = new MenuAbout();
 			break;
 
 		default:
