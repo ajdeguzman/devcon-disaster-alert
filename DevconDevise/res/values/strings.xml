@@ -8,10 +8,10 @@
     <string name="drawer_close">Slider Menu Closed</string>
     
     <string-array name="nav_drawer_items">
-        <item>Home</item>
+        <item>News Feed</item>
         <item>Report Disaster</item>
         <item>Disaster Map</item>
-        <item>Statistics</item>
+        <item>Stats</item>
         <item>Help</item>
         <item>About</item>
     </string-array>
@@ -34,10 +34,10 @@
         <item>Others</item>
     </string-array>
     <array name="nav_drawer_icons">
-        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_news</item>
         <item>@drawable/ic_report</item>
-        <item>@drawable/ic_track</item>
         <item>@drawable/ic_map</item>
+        <item>@drawable/ic_stat</item>
         <item>@drawable/ic_action_help</item>
         <item>@drawable/ic_action_about</item>
     </array>
