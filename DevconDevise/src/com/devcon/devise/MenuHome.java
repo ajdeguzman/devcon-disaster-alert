@@ -1,23 +1,24 @@
 package com.devcon.devise;
 
-import com.devcon.devise.R;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MenuDisaster extends Fragment {
+public class MenuHome extends Fragment {
 	
-	public MenuDisaster(){}
+	public MenuHome(){}
+	private MenuItem menuItem;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
-        View rootView = inflater.inflate(R.layout.layout_disaster, container, false);
-         
+        View rootView = inflater.inflate(R.layout.layout_home, container, false);
         return rootView;
     }
+	
+		
 }
