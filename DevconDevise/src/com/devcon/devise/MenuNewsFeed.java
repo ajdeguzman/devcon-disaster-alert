@@ -52,11 +52,12 @@ public class MenuNewsFeed extends Fragment {
 		
         View rootView = inflater.inflate(R.layout.layout_home, container, false);
 		lstBooks = (PullToRefreshListView) rootView.findViewById(R.id.pull_to_refresh_listview);
+		task = new MyTask();
+		task.execute();
 		lstBooks.setOnRefreshListener(new OnRefreshListener<ListView>() {
 		    @Override
 		    public void onRefresh(PullToRefreshBase<ListView> refreshView) {
 		        // Do work to refresh the list here.
-				task = new MyTask();
 				task.execute();
 		    }
 		});
@@ -82,27 +83,12 @@ public class MenuNewsFeed extends Fragment {
 			NodeList nodeListBook = doc.getElementsByTagName("book");
 			for(int i = 0; i < nodeListBook.getLength(); i++){
 				HashMap<String, String> map = new HashMap<String, String>();
-				Element elementBook = (Element) nodeListBook.item(i);
 				
-				NodeList nodeListTitle = elementBook.getElementsByTagName("title");	
-				Element elementTitle = (Element) nodeListTitle.item(0);
-				
-				
-				NodeList nodeListAuthor = elementBook.getElementsByTagName("author");	
-				Element elementAuthor = (Element) nodeListAuthor.item(0);
-				
-				NodeList nodeListGenre = elementBook.getElementsByTagName("genre");
-				Element elementGenre = (Element) nodeListGenre.item(0);
-				
-				NodeList nodeListDate= elementBook.getElementsByTagName("publish_date");
-				Element elementPublish = (Element) nodeListDate.item(0);
-				
-				map.put("book_title", elementTitle.getFirstChild().getTextContent());
-				map.put("book_author", elementAuthor.getFirstChild().getTextContent());
-				map.put("book_genre", elementGenre.getFirstChild().getTextContent());
-				map.put("book_published", elementPublish.getFirstChild().getTextContent());
+				map.put("book_title", "haha");
+				map.put("book_author", "haha");
+				map.put("book_genre", "haha");
+				map.put("book_published", "haha");
 				allBooks.add(map);
-							
 			}
 			return allBooks;
 		}
