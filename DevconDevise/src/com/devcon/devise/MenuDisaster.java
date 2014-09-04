@@ -9,6 +9,8 @@ import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,6 +25,8 @@ public class MenuDisaster extends Fragment {
 	
 	public MenuDisaster(){}
 	private GoogleMap map;
+	private Spinner spinnerDisasterType;
+    
 	private LatLngBounds PHILIPPINES = new LatLngBounds(new LatLng(5.5158016,117.9349218), new LatLng(20.176906,123.5187749));
 	private static View view;
 	@Override
@@ -42,6 +46,10 @@ public class MenuDisaster extends Fragment {
         } catch (InflateException e) {
             /* map is already there, just return view as it is */
         }
+		spinnerDisasterType = (Spinner) view.findViewById(R.id.spinView);
+	    ArrayAdapter<CharSequence> adapter =ArrayAdapter.createFromResource(getActivity(), R.array.arr_disaster_items, android.R.layout.simple_spinner_item);
+	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    spinnerDisasterType.setAdapter(adapter);
         return view;
     }
 	private void initializeMap(){
