@@ -42,7 +42,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:background="#FFF"
-            android:onClick="clickBrowse"
             android:src="@drawable/menu_browse" />
     </TableRow>
 
@@ -85,7 +84,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#FFF"
-            android:onClick="clickViewMap"
             android:src="@drawable/menu_map" />
 
         <ImageButton
