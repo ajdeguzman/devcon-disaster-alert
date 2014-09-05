@@ -103,12 +103,10 @@ public class CustomMarkerClusteringDemoActivity extends BaseDemoActivity impleme
 
     @Override
     public void onClusterInfoWindowClick(Cluster<Person> cluster) {
-        // Does nothing, but you could go to a list of the users.
     }
 
     @Override
     public boolean onClusterItemClick(Person item) {
-        // Does nothing, but you could go into the user's profile page, for example.
         return false;
     }
 
