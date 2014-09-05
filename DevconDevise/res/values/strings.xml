@@ -15,6 +15,13 @@
         <item>Help</item>
         <item>About</item>
     </string-array>
+    <string-array name="arr_view_map">
+        <item>24 hrs</item>
+        <item>3 days</item>
+        <item>6 days</item>
+        <item>12 days</item>
+        <item>30 days</item>
+    </string-array>
     <string-array name="arr_disaster_items">
         <item>Animal and Insect Infestation</item>
         <item>Avalanches</item>
