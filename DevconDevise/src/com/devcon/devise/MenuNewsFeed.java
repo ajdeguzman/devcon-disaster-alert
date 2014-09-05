@@ -33,7 +33,7 @@ import com.handmark.pulltorefresh.library.extras.SoundPullEventListener;
 
 public class MenuNewsFeed extends Fragment {
 	private final String WEB_URL = "http://www.ajdeguzman.x10.mx/api/books.xml";
-	MyTask task;
+	private LoadTask task;
 	String[] books = new String[] {"book_title", "book_published", "book_author", "book_genre"};
 	int[] books_layout = new int[]{R.id.book_title, R.id.book_published, R.id.book_author, R.id.book_genre};
 	private PullToRefreshListView lstBooks;
@@ -52,13 +52,12 @@ public class MenuNewsFeed extends Fragment {
 		
         View rootView = inflater.inflate(R.layout.layout_home, container, false);
 		lstBooks = (PullToRefreshListView) rootView.findViewById(R.id.pull_to_refresh_listview);
-		task = new MyTask();
-		task.execute();
+		task = new LoadTask();
 		lstBooks.setOnRefreshListener(new OnRefreshListener<ListView>() {
 		    @Override
 		    public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-		        // Do work to refresh the list here.
 				task.execute();
+				task.cancel(true);
 		    }
 		});
 		SoundPullEventListener<ListView> soundListener = new SoundPullEventListener<ListView>(getActivity());
@@ -68,11 +67,10 @@ public class MenuNewsFeed extends Fragment {
 		lstBooks.setOnPullEventListener(soundListener);
         return rootView;
     }
-	private class MyTask extends AsyncTask<String,String,List>{
+	private class LoadTask extends AsyncTask<String,String,List>{
 		@Override
 		protected List doInBackground(String... arg0) {
 			List<HashMap<String, String>> allBooks = new ArrayList<HashMap<String, String>>();
-			//call this method which connections to web
 			try {
 				dbf = DocumentBuilderFactory.newInstance();
 				db = dbf.newDocumentBuilder();
@@ -97,6 +95,7 @@ public class MenuNewsFeed extends Fragment {
 			SimpleAdapter simple = new SimpleAdapter(getActivity(), str, R.layout.books_layout, books, books_layout);
 			lstBooks.setAdapter(simple);
 			simple.notifyDataSetChanged();
+			
 			lstBooks.onRefreshComplete();
 			super.onPostExecute(str);
 		}
