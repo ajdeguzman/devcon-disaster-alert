@@ -57,7 +57,6 @@ public class MenuNewsFeed extends Fragment {
 		    @Override
 		    public void onRefresh(PullToRefreshBase<ListView> refreshView) {
 				task.execute();
-				task.cancel(true);
 		    }
 		});
 		SoundPullEventListener<ListView> soundListener = new SoundPullEventListener<ListView>(getActivity());
@@ -81,12 +80,27 @@ public class MenuNewsFeed extends Fragment {
 			NodeList nodeListBook = doc.getElementsByTagName("book");
 			for(int i = 0; i < nodeListBook.getLength(); i++){
 				HashMap<String, String> map = new HashMap<String, String>();
+				Element elementBook = (Element) nodeListBook.item(i);
 				
-				map.put("book_title", "haha");
-				map.put("book_author", "haha");
-				map.put("book_genre", "haha");
-				map.put("book_published", "haha");
+				NodeList nodeListTitle = elementBook.getElementsByTagName("title");	
+				Element elementTitle = (Element) nodeListTitle.item(0);
+				
+				
+				NodeList nodeListAuthor = elementBook.getElementsByTagName("author");	
+				Element elementAuthor = (Element) nodeListAuthor.item(0);
+				
+				NodeList nodeListGenre = elementBook.getElementsByTagName("genre");
+				Element elementGenre = (Element) nodeListGenre.item(0);
+				
+				NodeList nodeListDate= elementBook.getElementsByTagName("publish_date");
+				Element elementPublish = (Element) nodeListDate.item(0);
+				
+				map.put("book_title", elementTitle.getFirstChild().getTextContent());
+				map.put("book_author", elementAuthor.getFirstChild().getTextContent());
+				map.put("book_genre", elementGenre.getFirstChild().getTextContent());
+				map.put("book_published", elementPublish.getFirstChild().getTextContent());
 				allBooks.add(map);
+				
 			}
 			return allBooks;
 		}
