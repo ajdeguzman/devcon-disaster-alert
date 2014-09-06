@@ -39,6 +39,7 @@ public class MenuNewsFeed extends Fragment {
 	private PullToRefreshListView lstBooks;
 	private ProgressDialog pd; 
 	String sample;
+	String sample2;
 	Document doc;
 	DocumentBuilder db;
 	DocumentBuilderFactory dbf;
