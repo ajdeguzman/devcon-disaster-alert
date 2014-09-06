@@ -38,7 +38,7 @@ public class MenuNewsFeed extends Fragment {
 	int[] books_layout = new int[]{R.id.book_title, R.id.book_published, R.id.book_author, R.id.book_genre};
 	private PullToRefreshListView lstBooks;
 	private ProgressDialog pd; 
-	
+	String sample;
 	Document doc;
 	DocumentBuilder db;
 	DocumentBuilderFactory dbf;
