@@ -16,9 +16,6 @@ import org.w3c.dom.NodeList;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,7 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -61,39 +57,16 @@ public class MenuNewsFeed extends Fragment {
 		lstBooks.setOnRefreshListener(new OnRefreshListener<ListView>() {
 		    @Override
 		    public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-		    	if(checkInternetConnection()){
-					task.execute();
-		    	}else{
-					lstBooks.onRefreshComplete();
-				   Toast.makeText(getActivity(), "Couldn't refresh feed", Toast.LENGTH_SHORT).show();
-				}
+				task.execute();
 		    }
 		});
-		/*SoundPullEventListener<ListView> soundListener = new SoundPullEventListener<ListView>(getActivity());
+		SoundPullEventListener<ListView> soundListener = new SoundPullEventListener<ListView>(getActivity());
 		soundListener.addSoundEvent(State.PULL_TO_REFRESH, R.raw.pull_event);
 		soundListener.addSoundEvent(State.RESET, R.raw.reset_sound);
 		soundListener.addSoundEvent(State.REFRESHING, R.raw.refreshing_sound);
-		lstBooks.setOnPullEventListener(soundListener);*/
+		lstBooks.setOnPullEventListener(soundListener);
         return rootView;
     }
-	private boolean checkInternetConnection(){
-		   boolean connected = false;
-		      ConnectivityManager check = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-		      if (check != null) 
-		      {
-		         NetworkInfo[] info = check.getAllNetworkInfo();
-		         if (info != null) 
-		            for (int i = 0; i <info.length; i++) 
-		            if (info[i].getState() == NetworkInfo.State.CONNECTED)
-		            {
-		            	connected = true;
-		            }
-		      }
-		      else{
-		         Toast.makeText(getActivity(), "Couldn't refresh feed", Toast.LENGTH_SHORT).show();
-		          }
-		      return connected;
-	}
 	private class LoadTask extends AsyncTask<String,String,List>{
 		@Override
 		protected List doInBackground(String... arg0) {
