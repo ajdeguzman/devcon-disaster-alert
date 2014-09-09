@@ -57,7 +57,7 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
             if(checkInternetConnection()){
             	initializeMap();
             }else{
-            	Toast.makeText(getActivity(), "Cannot connect to server", Toast.LENGTH_LONG).show();
+            	Toast.makeText(getActivity(), "Check your internet connection", Toast.LENGTH_LONG).show();
             }
         } catch (InflateException e) {
             /* map is already there, just return view as it is */
@@ -96,8 +96,6 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
 		super.onResume();
 		if(checkInternetConnection()){
         	initializeMap();
-        }else{
-        	Toast.makeText(getActivity(), "Cannot connect to server", Toast.LENGTH_LONG).show();
         }
 	}
 	private boolean checkInternetConnection(){
@@ -113,9 +111,6 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
 		            	connected = true;
 		            }
 		      }
-		      else{
-		         Toast.makeText(getActivity(), "Cannot connect to the server.", Toast.LENGTH_SHORT).show();
-		          }
 		      return connected;
 	}
 	private class PersonRenderer extends DefaultClusterRenderer<Person> {

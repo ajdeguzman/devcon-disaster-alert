@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,14 +14,16 @@ import android.widget.ImageButton;
 
 public class MenuReport extends Fragment {
 	private static final int PICK_IMAGE = 1;
+	private static final int TAKE_PICTURE = 1;
 	public MenuReport(){}
-	private ImageButton imgBrowse;
+	private ImageButton imgBrowse, imgTake;
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
  
         View root = inflater.inflate(R.layout.layout_report, container, false);
         imgBrowse = (ImageButton)root.findViewById(R.id.imgBrowse);
+        imgTake = (ImageButton)root.findViewById(R.id.imgTake);
         imgBrowse.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -29,6 +32,14 @@ public class MenuReport extends Fragment {
 				intent.setType("image/*");
 				intent.setAction(Intent.ACTION_GET_CONTENT);
 				startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+			}
+        	
+        }); 
+        imgTake.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE), TAKE_PICTURE);
 			}
         	
         });
