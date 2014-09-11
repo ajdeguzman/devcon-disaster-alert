@@ -43,7 +43,7 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
     private Random mRandom = new Random(1984);
     private ClusterManager<Person> mClusterManager;
     
-	private LatLngBounds PHILIPPINES = new LatLngBounds(new LatLng(5.5158016,117.9349218), new LatLng(20.176906,123.5187749));
+	private LatLngBounds PHILIPPINES = new LatLngBounds(new LatLng(4.6145711,119.6272661), new LatLng(19.966096,124.173694));
 	private static View view;
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
             if(checkInternetConnection()){
             	initializeMap();
             }else{
-            	Toast.makeText(getActivity(), "Cannot connect to server", Toast.LENGTH_LONG).show();
+            	Toast.makeText(getActivity(), "Check your internet connection", Toast.LENGTH_LONG).show();
             }
         } catch (InflateException e) {
             /* map is already there, just return view as it is */
@@ -96,8 +96,6 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
 		super.onResume();
 		if(checkInternetConnection()){
         	initializeMap();
-        }else{
-        	Toast.makeText(getActivity(), "Cannot connect to server", Toast.LENGTH_LONG).show();
         }
 	}
 	private boolean checkInternetConnection(){
@@ -113,9 +111,6 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
 		            	connected = true;
 		            }
 		      }
-		      else{
-		         Toast.makeText(getActivity(), "Cannot connect to the server.", Toast.LENGTH_SHORT).show();
-		          }
 		      return connected;
 	}
 	private class PersonRenderer extends DefaultClusterRenderer<Person> {
