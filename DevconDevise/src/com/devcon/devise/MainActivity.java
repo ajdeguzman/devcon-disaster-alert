@@ -30,6 +30,7 @@ public class MainActivity extends Activity {
 	private CharSequence mTitle;
 	private String[] navMenuTitles;
 	private TypedArray navMenuIcons;
+	private int list_default = 0;
 
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
@@ -82,9 +83,12 @@ public class MainActivity extends Activity {
 			}
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			list_default = extras.getInt("position");
+		}
 		if (savedInstanceState == null) {
-			displayView(0);
+			displayView(list_default);
 		}
 	}
 
