@@ -69,11 +69,11 @@ public class MenuNewsFeed extends Fragment {
 				}
 		    }
 		});
-		/*SoundPullEventListener<ListView> soundListener = new SoundPullEventListener<ListView>(getActivity());
-		soundListener.addSoundEvent(State.PULL_TO_REFRESH, R.raw.pull_event);
-		soundListener.addSoundEvent(State.RESET, R.raw.reset_sound);
-		soundListener.addSoundEvent(State.REFRESHING, R.raw.refreshing_sound);
-		lstBooks.setOnPullEventListener(soundListener);*/
+		SoundPullEventListener<ListView> soundListener = new SoundPullEventListener<ListView>(getActivity());
+		soundListener.addSoundEvent(State.PULL_TO_REFRESH, R.raw.sound_pull_down);
+		soundListener.addSoundEvent(State.RESET, R.raw.sound_receive);
+		soundListener.addSoundEvent(State.REFRESHING, R.raw.sound_refresh);
+		lstBooks.setOnPullEventListener(soundListener);
         return rootView;
     }
 	private boolean checkInternetConnection(){

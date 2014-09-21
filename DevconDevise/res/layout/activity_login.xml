@@ -42,12 +42,14 @@
 
     <EditText
         android:id="@+id/password"
-        android:textColor="#898989"
         android:layout_width="272dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColor="#898989"
+        android:typeface="normal" />
+
     </LinearLayout>
 
     
@@ -62,7 +64,7 @@
 
     <Button
         android:id="@+id/signin"
-		android:layout_marginTop="5dp"
+		android:layout_marginTop="3dp"
         style="@style/btnStyleShakespeare"
         android:layout_width="278dp"
         android:layout_height="wrap_content"

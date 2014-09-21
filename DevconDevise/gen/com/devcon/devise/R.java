@@ -477,9 +477,9 @@ containing a value of this type.
         public static final int main=0x7f0d0001;
     }
     public static final class raw {
-        public static final int pull_event=0x7f060000;
-        public static final int refreshing_sound=0x7f060001;
-        public static final int reset_sound=0x7f060002;
+        public static final int sound_pull_down=0x7f060000;
+        public static final int sound_receive=0x7f060001;
+        public static final int sound_refresh=0x7f060002;
     }
     public static final class string {
         public static final int action_settings=0x7f09001d;
