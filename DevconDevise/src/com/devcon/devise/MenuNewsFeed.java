@@ -1,5 +1,10 @@
 package com.devcon.devise;
 
+import it.gmariotti.cardslib.library.internal.Card;
+import it.gmariotti.cardslib.library.internal.CardHeader;
+import it.gmariotti.cardslib.library.internal.CardThumbnail;
+import it.gmariotti.cardslib.library.view.CardView;
+
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -25,15 +30,10 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.State;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.handmark.pulltorefresh.library.extras.SoundPullEventListener;
 
 public class MenuNewsFeed extends Fragment {
 	private final String WEB_URL = "http://www.ajdeguzman.x10.mx/api/books.xml";
@@ -54,9 +54,27 @@ public class MenuNewsFeed extends Fragment {
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-		
-        View rootView = inflater.inflate(R.layout.layout_home, container, false);
-		lstBooks = (PullToRefreshListView) rootView.findViewById(R.id.pull_to_refresh_listview);
+        View rootView = inflater.inflate(R.layout.layout_news, container, false);
+     // Create a Card
+        Card card = new Card(getActivity(), R.layout.row_card);
+         
+        // Create a CardHeader
+        CardHeader header = new CardHeader(getActivity());
+        header.setTitle("UCU holds Fun Run 2014");
+                 
+        card.setTitle("The quick brown fox");
+        CardThumbnail thumb = new CardThumbnail(getActivity());
+        thumb.setDrawableResource(R.drawable.ic_launcher);
+                 
+        card.addCardThumbnail(thumb);
+                 
+        // Add Header to card
+        card.addCardHeader(header);
+         
+        // Set card in the cardView
+        CardView cardView = (CardView) rootView.findViewById(R.id.carddemo);
+        cardView.setCard(card);
+		/*lstBooks = (PullToRefreshListView) rootView.findViewById(R.id.pull_to_refresh_listview);
 		task = new LoadTask();
 		lstBooks.setOnRefreshListener(new OnRefreshListener<ListView>() {
 		    @Override
@@ -73,7 +91,7 @@ public class MenuNewsFeed extends Fragment {
 		soundListener.addSoundEvent(State.PULL_TO_REFRESH, R.raw.sound_pull_down);
 		soundListener.addSoundEvent(State.RESET, R.raw.sound_receive);
 		soundListener.addSoundEvent(State.REFRESHING, R.raw.sound_refresh);
-		lstBooks.setOnPullEventListener(soundListener);
+		lstBooks.setOnPullEventListener(soundListener);*/
         return rootView;
     }
 	private boolean checkInternetConnection(){
