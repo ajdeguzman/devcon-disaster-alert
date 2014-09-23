@@ -202,7 +202,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int card_inner_base_main_cardwithlist=0x7f0a0018;
         public static int card_inner_base_progressbar_cardwithlist=0x7f0a001a;
         public static int card_main_content_layout=0x7f0a000a;
-        public static int card_main_inner_secondary_title=0x7f0a001f;
         public static int card_main_inner_simple_title=0x7f0a0017;
         public static int card_main_layout=0x7f0a000c;
         public static int card_overlap=0x7f0a000f;

@@ -245,8 +245,8 @@ int drawable undobar 0x7f020060
 int drawable undobar_button_focused 0x7f020061
 int drawable undobar_button_pressed 0x7f020062
 int drawable undobar_divider 0x7f020063
-int id action_load 0x7f0d005b
-int id action_settings 0x7f0d005a
+int id action_load 0x7f0d005a
+int id action_settings 0x7f0d0059
 int id book_author 0x7f0d0028
 int id book_genre 0x7f0d0029
 int id book_id 0x7f0d0025
@@ -268,7 +268,6 @@ int id card_inner_base_empty_cardwithlist 0x7f0d003c
 int id card_inner_base_main_cardwithlist 0x7f0d003b
 int id card_inner_base_progressbar_cardwithlist 0x7f0d003d
 int id card_main_content_layout 0x7f0d002a
-int id card_main_inner_secondary_title 0x7f0d0059
 int id card_main_inner_simple_title 0x7f0d003a
 int id card_main_layout 0x7f0d002c
 int id card_overlap 0x7f0d002f

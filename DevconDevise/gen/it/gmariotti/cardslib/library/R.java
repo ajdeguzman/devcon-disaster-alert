@@ -137,7 +137,6 @@ public final class R {
 		public static final int card_inner_base_main_cardwithlist = 0x7f0d003b;
 		public static final int card_inner_base_progressbar_cardwithlist = 0x7f0d003d;
 		public static final int card_main_content_layout = 0x7f0d002a;
-		public static final int card_main_inner_secondary_title = 0x7f0d0059;
 		public static final int card_main_inner_simple_title = 0x7f0d003a;
 		public static final int card_main_layout = 0x7f0d002c;
 		public static final int card_overlap = 0x7f0d002f;

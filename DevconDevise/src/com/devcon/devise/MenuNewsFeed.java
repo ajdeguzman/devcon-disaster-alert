@@ -4,6 +4,7 @@ import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardHeader;
 import it.gmariotti.cardslib.library.internal.CardThumbnail;
 import it.gmariotti.cardslib.library.view.CardView;
+import it.gmariotti.cardslib.library.view.component.CardThumbnailView;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -51,31 +52,23 @@ public class MenuNewsFeed extends Fragment {
 	public MenuNewsFeed(){}
 	private MenuItem menuItem;
 	
+	Card card;
+	CardHeader header;
+	CardThumbnail thumb;
+	CardThumbnailView view;
+	CardView cardView;
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.layout_news, container, false);
      // Create a Card
-        Card card = new Card(getActivity(), R.layout.row_card);
-         
-        // Create a CardHeader
-        CardHeader header = new CardHeader(getActivity());
-        header.setTitle("UCU holds Fun Run 2014");
-                 
-        card.setTitle("The quick brown fox");
-        CardThumbnail thumb = new CardThumbnail(getActivity());
-        thumb.setDrawableResource(R.drawable.ic_launcher);
-                 
-        card.addCardThumbnail(thumb);
-                 
-        // Add Header to card
-        card.addCardHeader(header);
-         
-        // Set card in the cardView
-        CardView cardView = (CardView) rootView.findViewById(R.id.carddemo);
-        cardView.setCard(card);
-		/*lstBooks = (PullToRefreshListView) rootView.findViewById(R.id.pull_to_refresh_listview);
+        card = new Card(getActivity(), R.layout.row_card);
+        header = new CardHeader(getActivity());
+        cardView = (CardView) rootView.findViewById(R.id.carddemo);
 		task = new LoadTask();
+		task.execute();
+		/*lstBooks = (PullToRefreshListView) rootView.findViewById(R.id.pull_to_refresh_listview);
 		lstBooks.setOnRefreshListener(new OnRefreshListener<ListView>() {
 		    @Override
 		    public void onRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -150,14 +143,25 @@ public class MenuNewsFeed extends Fragment {
 			}
 			return allBooks;
 		}
+		protected void onPreExecute(){
+			pd = new ProgressDialog(getActivity());
+			pd.setMessage("Loading contents...");
+			pd.show();
+			
+		}
 		@Override
 		protected void onPostExecute(List str){
+	        header.setTitle("UCU holds Fun Run 2014");
+	        card.setTitle("The quick brown fox");
+	        thumb = new CardThumbnail(getActivity());
+	        thumb.setDrawableResource(R.drawable.ic_launcher);
+	        card.addCardThumbnail(thumb);
+	        card.addCardHeader(header);
+	        cardView.setCard(card);
 			SimpleAdapter simple = new SimpleAdapter(getActivity(), str, R.layout.books_layout, books, books_layout);
-			lstBooks.setAdapter(simple);
 			simple.notifyDataSetChanged();
-			
-			lstBooks.onRefreshComplete();
 			super.onPostExecute(str);
+			pd.hide();
 		}
 	}
 	private InputStream webConnect(){

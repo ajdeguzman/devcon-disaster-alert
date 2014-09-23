@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:card="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D3D6DB"
     android:orientation="vertical" >
     <it.gmariotti.cardslib.library.view.CardView
             android:id="@+id/carddemo"
@@ -9,5 +11,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="12dp"
+            card:card_layout_resourceID="@layout/card_thumbnail_layout"/>
 </LinearLayout>

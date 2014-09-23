@@ -564,8 +564,8 @@ containing a value of this type.
         public static final int undobar_divider=0x7f020063;
     }
     public static final class id {
-        public static final int action_load=0x7f0d005b;
-        public static final int action_settings=0x7f0d005a;
+        public static final int action_load=0x7f0d005a;
+        public static final int action_settings=0x7f0d0059;
         public static final int book_author=0x7f0d0028;
         public static final int book_genre=0x7f0d0029;
         public static final int book_id=0x7f0d0025;
@@ -587,7 +587,6 @@ containing a value of this type.
         public static final int card_inner_base_main_cardwithlist=0x7f0d003b;
         public static final int card_inner_base_progressbar_cardwithlist=0x7f0d003d;
         public static final int card_main_content_layout=0x7f0d002a;
-        public static final int card_main_inner_secondary_title=0x7f0d0059;
         public static final int card_main_inner_simple_title=0x7f0d003a;
         public static final int card_main_layout=0x7f0d002c;
         public static final int card_overlap=0x7f0d002f;
