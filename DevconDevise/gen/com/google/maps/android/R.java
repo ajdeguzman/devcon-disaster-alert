@@ -78,7 +78,7 @@ public final class R {
 		public static final int text = 0x7f0d0011;
 	}
 	public static final class layout {
-		public static final int text_bubble = 0x7f030027;
+		public static final int text_bubble = 0x7f030028;
 	}
 	public static final class string {
 		public static final int auth_client_availability_notification_title = 0x7f09001a;

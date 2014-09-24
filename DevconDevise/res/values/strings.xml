@@ -53,5 +53,6 @@
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="title_activity_login">Login</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_submit_photo">Submit a Photo</string>
 
 </resources>

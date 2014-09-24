@@ -3,8 +3,7 @@ package com.devcon.devise;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class MenuReport extends Fragment {
 	private static final int PICK_IMAGE = 1;
@@ -81,8 +81,8 @@ public class MenuReport extends Fragment {
 	}
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    if(requestCode == PICK_IMAGE && data != null && data.getData() != null) {
-	        Uri _uri = data.getData();
+	    if(requestCode == PICK_IMAGE) {
+	        /*Uri _uri = data.getData();
 
 	        //User had pick an image.
 	        Cursor cursor = getActivity().getContentResolver().query(_uri, new String[] { android.provider.MediaStore.Images.ImageColumns.DATA }, null, null, null);
@@ -90,7 +90,11 @@ public class MenuReport extends Fragment {
 
 	        //Link to the image
 	        final String imageFilePath = cursor.getString(0);
-	        cursor.close();
+	        cursor.close();*/
+	    	Bitmap photo = (Bitmap) data.getExtras().get("data");
+	    	Intent i = new Intent(getActivity(), SubmitPhoto.class);
+	    	i.putExtra("Image", photo);
+	    	startActivity(i);
 	    }
 	    super.onActivityResult(requestCode, resultCode, data);
 	}
