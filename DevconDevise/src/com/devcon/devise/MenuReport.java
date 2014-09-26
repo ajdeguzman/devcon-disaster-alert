@@ -1,9 +1,13 @@
 package com.devcon.devise;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,10 +16,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class MenuReport extends Fragment {
 	private static final int PICK_IMAGE = 1;
-	private static final int TAKE_PICTURE = 1;
+	private static final int TAKE_PICTURE = 2;
 	public MenuReport(){}
 	private ImageButton imgBrowse, imgTake, imgMap;
 	ProgressDialog progress;
@@ -29,10 +34,11 @@ public class MenuReport extends Fragment {
         imgBrowse.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
-				Intent intent = new Intent();
+				/*Intent intent = new Intent();
 				intent.setType("image/*");
 				intent.setAction(Intent.ACTION_GET_CONTENT);
-				startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+				startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);*/
+                startActivityForResult(new Intent(Intent.ACTION_PICK,  android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI), PICK_IMAGE);
 			}
         	
         }); 
@@ -79,12 +85,28 @@ public class MenuReport extends Fragment {
 	}
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    if(requestCode == PICK_IMAGE) {
-	    	Bitmap photo = (Bitmap) data.getExtras().get("data");
-	    	Intent i = new Intent(getActivity(), SubmitPhoto.class);
-	    	i.putExtra("Image", photo);
-	    	startActivity(i);
-	    }
+		if(resultCode == Activity.RESULT_OK)
+        {
+			 if(requestCode == TAKE_PICTURE) {
+			    	Bitmap photo = (Bitmap) data.getExtras().get("data");
+			    	Intent i = new Intent(getActivity(), SubmitPhoto.class);
+			    	i.putExtra("Image", photo);
+			    	startActivity(i);
+			    }else if(requestCode == PICK_IMAGE){
+			    	Uri selectedImage = data.getData();
+		            String[] filePath = { MediaStore.Images.Media.DATA };
+		            Cursor c = getActivity().getContentResolver().query(selectedImage,filePath, null, null, null);
+		            c.moveToFirst();
+		            int columnIndex = c.getColumnIndex(filePath[0]);
+		            String picturePath = c.getString(columnIndex);
+		            Bitmap photo2 = (BitmapFactory.decodeFile(picturePath));
+			    	Intent v = new Intent(getActivity(), SubmitPhoto.class);
+			    	v.putExtra("Image", photo2);
+			    	startActivity(v);
+		           // c.close();
+			    }
+			
+        }
 	    super.onActivityResult(requestCode, resultCode, data);
 	}
 }

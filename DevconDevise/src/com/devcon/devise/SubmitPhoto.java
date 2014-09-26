@@ -1,24 +1,49 @@
 package com.devcon.devise;
 
+import java.io.ByteArrayOutputStream;
+
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.parse.Parse;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+
 public class SubmitPhoto extends Activity {
 	ImageView img;
+	final String APP_ID = "GBdi0gjuAzS7MilcllE4vgMpEaJ8NdFCGsLMIJci";
+	final String CLIENT_KEY = "R3ww5CExVqUo9LCo13d4dO2mhNA1RHicuTcGpnLf";
+	Bitmap bitmap;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_submit_photo);
+		Parse.initialize(this, APP_ID, CLIENT_KEY);
 	}
 	@Override
 	public void onStart(){
 		super.onStart();
 		img = (ImageView) findViewById(R.id.imageView1);
-		Bitmap bitmap = (Bitmap) getIntent().getParcelableExtra("Image");
+		bitmap = (Bitmap) getIntent().getParcelableExtra("Image");
 		img.setImageBitmap(bitmap);
+	}
+	public void clickSubmit(View v){
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+	    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+	    // get byte array here
+	   byte[] bytearray= stream.toByteArray();
+	   
+	   ParseObject user = new ParseObject("Places");
+	    if (bytearray != null){
+	        ParseFile file = new ParseFile("haha.jpg",bytearray);
+	        file.saveInBackground();
+	        user.put("image",file);
+	    }
+	    user.saveInBackground();
+
 	}
 	public void clickCancel(View v){
 		finish();

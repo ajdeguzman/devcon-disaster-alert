@@ -26,7 +26,7 @@
 		        android:layout_marginLeft="5sp"
 		        android:layout_marginTop="5dp"
 		        android:paddingTop="10dp"
-		        android:text="DISASTER TYPE"
+		        android:text="TITLE"
 		        android:textAppearance="?android:attr/textAppearanceSmall"
 		        android:textColor="#163F5F"
 		        android:textStyle="bold" />
@@ -57,6 +57,7 @@
 		
 		    <Button
 		        android:id="@+id/button1"
+		        android:onClick="clickSubmit"
 				android:layout_marginTop="5dp"
         		style="@style/btnStyleShakespeare"
 		        android:layout_width="fill_parent"
