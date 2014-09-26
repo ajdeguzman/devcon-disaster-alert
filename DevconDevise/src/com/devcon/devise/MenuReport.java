@@ -12,23 +12,21 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 public class MenuReport extends Fragment {
 	private static final int PICK_IMAGE = 1;
 	private static final int TAKE_PICTURE = 1;
 	public MenuReport(){}
 	private ImageButton imgBrowse, imgTake, imgMap;
+	ProgressDialog progress;
 	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
  
         View root = inflater.inflate(R.layout.layout_report, container, false);
         imgBrowse = (ImageButton)root.findViewById(R.id.imgBrowse);
         imgMap = (ImageButton)root.findViewById(R.id.imgMap);
         imgTake = (ImageButton)root.findViewById(R.id.imgTake);
         imgBrowse.setOnClickListener(new OnClickListener(){
-
 			@Override
 			public void onClick(View arg0) {
 				Intent intent = new Intent();
@@ -56,7 +54,6 @@ public class MenuReport extends Fragment {
 					i.putExtras(bundle);
 					startActivity(i);
 			}
-        	
         });
         return root;
     }
@@ -69,10 +66,11 @@ public class MenuReport extends Fragment {
 		}
 		@Override
 		protected void onPostExecute(String str) {
+			progress.hide();
 		}
 		@Override
 		protected void onPreExecute() {
-			ProgressDialog progress = new ProgressDialog(getActivity());
+			progress = new ProgressDialog(getActivity());
 			progress.setMessage("Getting location details...");
 			progress.isIndeterminate();
 			progress.show();
@@ -82,15 +80,6 @@ public class MenuReport extends Fragment {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	    if(requestCode == PICK_IMAGE) {
-	        /*Uri _uri = data.getData();
-
-	        //User had pick an image.
-	        Cursor cursor = getActivity().getContentResolver().query(_uri, new String[] { android.provider.MediaStore.Images.ImageColumns.DATA }, null, null, null);
-	        cursor.moveToFirst();
-
-	        //Link to the image
-	        final String imageFilePath = cursor.getString(0);
-	        cursor.close();*/
 	    	Bitmap photo = (Bitmap) data.getExtras().get("data");
 	    	Intent i = new Intent(getActivity(), SubmitPhoto.class);
 	    	i.putExtra("Image", photo);
