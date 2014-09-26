@@ -32,7 +32,7 @@
 		        android:textStyle="bold" />
 		    
 		    <EditText
-		        android:id="@+id/editText1"
+		        android:id="@+id/txtTitle"
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content" >
 		        <requestFocus />
@@ -50,7 +50,9 @@
 		        android:textStyle="bold" />
 		    
 		    <EditText
-		        android:id="@+id/editText2"
+		        android:id="@+id/txtDescription"
+		        android:singleLine="false"
+		        android:maxLength="250"
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content" >
 		    </EditText>

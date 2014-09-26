@@ -283,8 +283,6 @@ int id carddemo 0x7f0d004a
 int id counter 0x7f0d003f
 int id disabled 0x7f0d0000
 int id drawer_layout 0x7f0d0018
-int id editText1 0x7f0d001e
-int id editText2 0x7f0d0020
 int id fl_inner 0x7f0d005a
 int id flip 0x7f0d0008
 int id frame_container 0x7f0d0019
@@ -337,6 +335,8 @@ int id textView3 0x7f0d001f
 int id textView7 0x7f0d0053
 int id textView8 0x7f0d0054
 int id title 0x7f0d003e
+int id txtDescription 0x7f0d0020
+int id txtTitle 0x7f0d001e
 int id undobar 0x7f0d003a
 int id undobar_button 0x7f0d003c
 int id undobar_message 0x7f0d003b

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.parse.Parse;
@@ -17,10 +18,13 @@ public class SubmitPhoto extends Activity {
 	final String APP_ID = "GBdi0gjuAzS7MilcllE4vgMpEaJ8NdFCGsLMIJci";
 	final String CLIENT_KEY = "R3ww5CExVqUo9LCo13d4dO2mhNA1RHicuTcGpnLf";
 	Bitmap bitmap;
+	EditText txtTitle, txtDescription;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_submit_photo);
+		txtTitle = (EditText)findViewById(R.id.txtTitle);
+		txtDescription = (EditText)findViewById(R.id.txtDescription);
 		Parse.initialize(this, APP_ID, CLIENT_KEY);
 	}
 	@Override
@@ -32,13 +36,15 @@ public class SubmitPhoto extends Activity {
 	}
 	public void clickSubmit(View v){
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-	    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+	    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 	    // get byte array here
 	   byte[] bytearray= stream.toByteArray();
 	   
 	   ParseObject user = new ParseObject("Places");
+	   user.put("title", txtTitle.getText().toString());
+	   user.put("description", txtDescription.getText().toString());
 	    if (bytearray != null){
-	        ParseFile file = new ParseFile("haha.jpg",bytearray);
+	        ParseFile file = new ParseFile(txtTitle.getText().toString().toLowerCase()+".png",bytearray);
 	        file.saveInBackground();
 	        user.put("image",file);
 	    }

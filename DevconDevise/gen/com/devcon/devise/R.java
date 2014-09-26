@@ -602,8 +602,6 @@ containing a value of this type.
         public static final int counter=0x7f0d003f;
         public static final int disabled=0x7f0d0000;
         public static final int drawer_layout=0x7f0d0018;
-        public static final int editText1=0x7f0d001e;
-        public static final int editText2=0x7f0d0020;
         public static final int fl_inner=0x7f0d005a;
         public static final int flip=0x7f0d0008;
         public static final int frame_container=0x7f0d0019;
@@ -656,6 +654,8 @@ containing a value of this type.
         public static final int textView7=0x7f0d0053;
         public static final int textView8=0x7f0d0054;
         public static final int title=0x7f0d003e;
+        public static final int txtDescription=0x7f0d0020;
+        public static final int txtTitle=0x7f0d001e;
         public static final int undobar=0x7f0d003a;
         public static final int undobar_button=0x7f0d003c;
         public static final int undobar_message=0x7f0d003b;
