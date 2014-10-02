@@ -565,8 +565,8 @@ containing a value of this type.
         public static final int undobar_divider=0x7f020064;
     }
     public static final class id {
-        public static final int action_load=0x7f0d0060;
-        public static final int action_settings=0x7f0d005f;
+        public static final int action_logout=0x7f0d0062;
+        public static final int action_settings=0x7f0d0061;
         public static final int book_author=0x7f0d0030;
         public static final int book_genre=0x7f0d0031;
         public static final int book_id=0x7f0d002d;
@@ -574,6 +574,7 @@ containing a value of this type.
         public static final int book_title=0x7f0d002e;
         public static final int both=0x7f0d0003;
         public static final int btnCancel=0x7f0d0022;
+        public static final int btn_submitforgetpassword=0x7f0d004a;
         public static final int button1=0x7f0d0021;
         public static final int card_base_empty_cardwithlist_text=0x7f0d002c;
         public static final int card_children_simple_title=0x7f0d0028;
@@ -599,27 +600,28 @@ containing a value of this type.
         public static final int card_thumb_and_content_layout=0x7f0d0038;
         public static final int card_thumbnail_image=0x7f0d002b;
         public static final int card_thumbnail_layout=0x7f0d0039;
-        public static final int carddemo=0x7f0d004a;
+        public static final int carddemo=0x7f0d004c;
         public static final int counter=0x7f0d003f;
         public static final int disabled=0x7f0d0000;
-        public static final int drawer_layout=0x7f0d0018;
-        public static final int fl_inner=0x7f0d005a;
+        public static final int drawer_layout=0x7f0d0019;
+        public static final int et_forgetpassword=0x7f0d0049;
+        public static final int fl_inner=0x7f0d005c;
         public static final int flip=0x7f0d0008;
-        public static final int frame_container=0x7f0d0019;
+        public static final int frame_container=0x7f0d001a;
         public static final int gridview=0x7f0d0009;
         public static final int hybrid=0x7f0d0010;
         public static final int icon=0x7f0d003d;
-        public static final int image=0x7f0d0059;
-        public static final int imageView1=0x7f0d001c;
-        public static final int imgBrowse=0x7f0d004d;
-        public static final int imgMap=0x7f0d0050;
-        public static final int imgTake=0x7f0d004c;
-        public static final int imgTerms=0x7f0d0051;
-        public static final int list_cardId=0x7f0d0055;
-        public static final int list_card_undobar=0x7f0d0056;
-        public static final int list_card_undobar_button=0x7f0d0058;
-        public static final int list_card_undobar_message=0x7f0d0057;
-        public static final int list_slidermenu=0x7f0d001a;
+        public static final int image=0x7f0d005b;
+        public static final int imageView1=0x7f0d001d;
+        public static final int imgBrowse=0x7f0d004f;
+        public static final int imgMap=0x7f0d0052;
+        public static final int imgTake=0x7f0d004e;
+        public static final int imgTerms=0x7f0d0053;
+        public static final int list_cardId=0x7f0d0057;
+        public static final int list_card_undobar=0x7f0d0058;
+        public static final int list_card_undobar_button=0x7f0d005a;
+        public static final int list_card_undobar_message=0x7f0d0059;
+        public static final int list_slidermenu=0x7f0d001b;
         public static final int login=0x7f0d0016;
         public static final int manualOnly=0x7f0d0004;
         public static final int map=0x7f0d0046;
@@ -630,29 +632,29 @@ containing a value of this type.
         public static final int pullFromEnd=0x7f0d0002;
         public static final int pullFromStart=0x7f0d0001;
         public static final int pullUpFromBottom=0x7f0d0006;
-        public static final int pull_to_refresh_image=0x7f0d005b;
-        public static final int pull_to_refresh_listview=0x7f0d0049;
-        public static final int pull_to_refresh_progress=0x7f0d005c;
-        public static final int pull_to_refresh_sub_text=0x7f0d005e;
-        public static final int pull_to_refresh_text=0x7f0d005d;
+        public static final int pull_to_refresh_image=0x7f0d005d;
+        public static final int pull_to_refresh_listview=0x7f0d004b;
+        public static final int pull_to_refresh_progress=0x7f0d005e;
+        public static final int pull_to_refresh_sub_text=0x7f0d0060;
+        public static final int pull_to_refresh_text=0x7f0d005f;
         public static final int radio_group_list_selector=0x7f0d0047;
         public static final int rotate=0x7f0d0007;
         public static final int satellite=0x7f0d000e;
-        public static final int scrollView1=0x7f0d001b;
+        public static final int scrollView1=0x7f0d001c;
         public static final int scrollview=0x7f0d000b;
         public static final int signin=0x7f0d0017;
         public static final int spinView=0x7f0d0048;
-        public static final int tableRow1=0x7f0d004b;
-        public static final int tableRow2=0x7f0d004f;
-        public static final int tableRow5=0x7f0d004e;
-        public static final int tableRow6=0x7f0d0052;
+        public static final int tableRow1=0x7f0d004d;
+        public static final int tableRow2=0x7f0d0051;
+        public static final int tableRow5=0x7f0d0050;
+        public static final int tableRow6=0x7f0d0054;
         public static final int terrain=0x7f0d000f;
         public static final int text=0x7f0d0011;
         public static final int textView1=0x7f0d0013;
-        public static final int textView2=0x7f0d001d;
+        public static final int textView2=0x7f0d0018;
         public static final int textView3=0x7f0d001f;
-        public static final int textView7=0x7f0d0053;
-        public static final int textView8=0x7f0d0054;
+        public static final int textView7=0x7f0d0055;
+        public static final int textView8=0x7f0d0056;
         public static final int title=0x7f0d003e;
         public static final int txtDescription=0x7f0d0020;
         public static final int txtTitle=0x7f0d001e;
@@ -693,22 +695,23 @@ containing a value of this type.
         public static final int inner_base_main_cardwithlist=0x7f030016;
         public static final int layout_about=0x7f030017;
         public static final int layout_disaster=0x7f030018;
-        public static final int layout_help=0x7f030019;
-        public static final int layout_home=0x7f03001a;
-        public static final int layout_news=0x7f03001b;
-        public static final int layout_report=0x7f03001c;
-        public static final int layout_track=0x7f03001d;
-        public static final int list_card_layout=0x7f03001e;
-        public static final int list_card_thumbnail_layout=0x7f03001f;
-        public static final int list_card_undo_material_message=0x7f030020;
-        public static final int list_card_undo_materialmobile_message=0x7f030021;
-        public static final int list_card_undo_message=0x7f030022;
-        public static final int multi_profile=0x7f030023;
-        public static final int pull_to_refresh_header_horizontal=0x7f030024;
-        public static final int pull_to_refresh_header_vertical=0x7f030025;
-        public static final int row_card=0x7f030026;
-        public static final int spinner_layout=0x7f030027;
-        public static final int text_bubble=0x7f030028;
+        public static final int layout_forgetpassword=0x7f030019;
+        public static final int layout_help=0x7f03001a;
+        public static final int layout_home=0x7f03001b;
+        public static final int layout_news=0x7f03001c;
+        public static final int layout_report=0x7f03001d;
+        public static final int layout_track=0x7f03001e;
+        public static final int list_card_layout=0x7f03001f;
+        public static final int list_card_thumbnail_layout=0x7f030020;
+        public static final int list_card_undo_material_message=0x7f030021;
+        public static final int list_card_undo_materialmobile_message=0x7f030022;
+        public static final int list_card_undo_message=0x7f030023;
+        public static final int multi_profile=0x7f030024;
+        public static final int pull_to_refresh_header_horizontal=0x7f030025;
+        public static final int pull_to_refresh_header_vertical=0x7f030026;
+        public static final int row_card=0x7f030027;
+        public static final int spinner_layout=0x7f030028;
+        public static final int text_bubble=0x7f030029;
     }
     public static final class menu {
         public static final int login=0x7f0f0000;
@@ -731,6 +734,7 @@ containing a value of this type.
         public static final int sound_refresh=0x7f060002;
     }
     public static final class string {
+        public static final int action_logout=0x7f090023;
         public static final int action_settings=0x7f090022;
         public static final int app_name=0x7f090020;
         public static final int app_settings=0x7f090021;
@@ -802,12 +806,14 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f090019;
-        public static final int desc_list_item_icon=0x7f090025;
-        public static final int drawer_close=0x7f090024;
-        public static final int drawer_open=0x7f090023;
+        public static final int desc_list_item_icon=0x7f090026;
+        public static final int drawer_close=0x7f090025;
+        public static final int drawer_open=0x7f090024;
+        public static final int error_field_required=0x7f09002a;
+        public static final int error_invalid_email=0x7f09002b;
         public static final int font_fontFamily_medium=0x7f090001;
         public static final int font_fontFamily_regular=0x7f090000;
-        public static final int hello_world=0x7f090027;
+        public static final int hello_world=0x7f090028;
         /**  Undo Controller
  Undo Controller
          */
@@ -832,8 +838,8 @@ containing a value of this type.
         public static final int pull_to_refresh_pull_label=0x7f090005;
         public static final int pull_to_refresh_refreshing_label=0x7f090007;
         public static final int pull_to_refresh_release_label=0x7f090006;
-        public static final int title_activity_login=0x7f090026;
-        public static final int title_activity_submit_photo=0x7f090028;
+        public static final int title_activity_login=0x7f090027;
+        public static final int title_activity_submit_photo=0x7f090029;
     }
     public static final class style {
         /** 

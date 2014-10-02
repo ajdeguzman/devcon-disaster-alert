@@ -5,7 +5,7 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/android-maps-utils"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/library"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/cards-lib"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/cards-lib"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>

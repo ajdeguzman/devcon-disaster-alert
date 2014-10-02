@@ -58,6 +58,8 @@ public class MenuNewsFeed extends Fragment {
 	CardThumbnailView view;
 	CardView cardView;
 	
+	ConnectionDetector cd =  new ConnectionDetector(getActivity());
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -87,7 +89,7 @@ public class MenuNewsFeed extends Fragment {
 		lstBooks.setOnPullEventListener(soundListener);*/
         return rootView;
     }
-	private boolean checkInternetConnection(){
+/*	private boolean checkInternetConnection(){
 		   boolean connected = false;
 		      ConnectivityManager check = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 		      if (check != null) 
@@ -104,7 +106,7 @@ public class MenuNewsFeed extends Fragment {
 		         Toast.makeText(getActivity(), "Couldn't refresh feed", Toast.LENGTH_SHORT).show();
 		          }
 		      return connected;
-	}
+	}*/
 	private class LoadTask extends AsyncTask<String,String,List>{
 		@Override
 		protected List doInBackground(String... arg0) {

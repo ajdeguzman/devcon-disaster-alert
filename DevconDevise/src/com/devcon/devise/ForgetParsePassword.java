@@ -1,9 +1,5 @@
 package com.devcon.devise;
 
-import com.parse.ParseException;
-import com.parse.ParseUser;
-import com.parse.RequestPasswordResetCallback;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +8,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.RequestPasswordResetCallback;
 
 public class ForgetParsePassword extends Activity{
 	EditText et_forgetpassword = null;
@@ -23,7 +23,7 @@ public class ForgetParsePassword extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.forgetpassword);
+		setContentView(R.layout.layout_forgetpassword);
 		
 		et_forgetpassword = (EditText) findViewById(R.id.et_forgetpassword);
 		btn_submitforgetpassword = (Button) findViewById(R.id.btn_submitforgetpassword);
@@ -44,7 +44,6 @@ public class ForgetParsePassword extends Activity{
 	}
 	
 	protected void checkEmailID() {
-		// TODO Auto-generated method stub
 		if (TextUtils.isEmpty(password)) {
 			et_forgetpassword.setError(getString(R.string.error_field_required));
 		} else if (!password.contains("@")) {
@@ -55,7 +54,6 @@ public class ForgetParsePassword extends Activity{
 	}
 
 	public void forgotPassword(String email) {
-		//postEvent(new UserForgotPasswordStartEvent());
 		ParseUser.requestPasswordResetInBackground(email, new UserForgotPasswordCallback());
 	}
 	

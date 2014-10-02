@@ -1,15 +1,26 @@
 package com.devcon.devise;
 
+import it.gmariotti.cardslib.library.internal.CardThumbnail;
+
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 
 import com.parse.Parse;
 import com.parse.ParseFile;
@@ -21,6 +32,7 @@ public class SubmitPhoto extends Activity {
 	final String CLIENT_KEY = "R3ww5CExVqUo9LCo13d4dO2mhNA1RHicuTcGpnLf";
 	Bitmap bitmap;
 	EditText txtTitle, txtDescription;
+	private ProgressDialog pd; 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,21 +57,40 @@ public class SubmitPhoto extends Activity {
 		img.setImageBitmap(bitmap);
 	}
 	public void clickSubmit(View v){
-		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-	    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-	    // get byte array here
-	   byte[] bytearray= stream.toByteArray();
-	   
-	   ParseObject user = new ParseObject("Places");
-	   user.put("title", txtTitle.getText().toString());
-	   user.put("description", txtDescription.getText().toString());
-	    if (bytearray != null){
-	        ParseFile file = new ParseFile(txtTitle.getText().toString().toLowerCase()+".png",bytearray);
-	        file.saveInBackground();
-	        user.put("image",file);
-	    }
-	    user.saveInBackground();
+		SubmitPhotoTask spt = new SubmitPhotoTask();
+		spt.execute();
+	}
 
+	private class SubmitPhotoTask extends AsyncTask<String,String,String>{
+		@Override
+		protected String doInBackground(String... arg0) {
+
+			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+		    // get byte array here
+		   byte[] bytearray= stream.toByteArray();
+		   
+		   ParseObject user = new ParseObject("Places");
+		   user.put("title", txtTitle.getText().toString());
+		   user.put("description", txtDescription.getText().toString());
+		    if (bytearray != null){
+		        ParseFile file = new ParseFile(txtTitle.getText().toString().toLowerCase()+".png",bytearray);
+		        file.saveInBackground();
+		        user.put("image",file);
+		    }
+		    user.saveInBackground();
+			return "";
+		}
+		protected void onPreExecute(){
+			pd = new ProgressDialog(SubmitPhoto.this);
+			pd.setMessage("Submitting Report...");
+			pd.show();
+			
+		}
+		@Override
+		protected void onPostExecute(String str){
+			pd.hide();
+		}
 	}
 	public void clickCancel(View v){
 		finish();

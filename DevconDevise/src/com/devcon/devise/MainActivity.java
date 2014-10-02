@@ -20,6 +20,7 @@ import android.widget.ListView;
 
 import com.devcon.devise.adapter.NavDrawerListAdapter;
 import com.devcon.devise.model.NavDrawerItem;
+import com.parse.ParseUser;
 
 public class MainActivity extends Activity {
 	private DrawerLayout mDrawerLayout;
@@ -117,7 +118,10 @@ public class MainActivity extends Activity {
 		switch (item.getItemId()) {
 		case R.id.action_settings:
 			startActivity(new Intent(getApplicationContext(), Preference.class));
-			return true;
+		case R.id.action_logout:
+			//ParseUser.logOut();
+			startActivity(new Intent(MainActivity.this, Login.class));
+			finish();
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -130,7 +134,6 @@ public class MainActivity extends Activity {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
 		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
-		menu.findItem(R.id.action_load).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 

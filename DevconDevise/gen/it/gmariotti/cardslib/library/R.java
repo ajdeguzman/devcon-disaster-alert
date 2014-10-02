@@ -146,10 +146,10 @@ public final class R {
 		public static final int card_thumb_and_content_layout = 0x7f0d0038;
 		public static final int card_thumbnail_image = 0x7f0d002b;
 		public static final int card_thumbnail_layout = 0x7f0d0039;
-		public static final int list_cardId = 0x7f0d0055;
-		public static final int list_card_undobar = 0x7f0d0056;
-		public static final int list_card_undobar_button = 0x7f0d0058;
-		public static final int list_card_undobar_message = 0x7f0d0057;
+		public static final int list_cardId = 0x7f0d0057;
+		public static final int list_card_undobar = 0x7f0d0058;
+		public static final int list_card_undobar_button = 0x7f0d005a;
+		public static final int list_card_undobar_message = 0x7f0d0059;
 		public static final int undobar = 0x7f0d003a;
 		public static final int undobar_button = 0x7f0d003c;
 		public static final int undobar_message = 0x7f0d003b;
@@ -176,12 +176,12 @@ public final class R {
 		public static final int inner_base_header = 0x7f030014;
 		public static final int inner_base_main = 0x7f030015;
 		public static final int inner_base_main_cardwithlist = 0x7f030016;
-		public static final int list_card_layout = 0x7f03001e;
-		public static final int list_card_thumbnail_layout = 0x7f03001f;
-		public static final int list_card_undo_material_message = 0x7f030020;
-		public static final int list_card_undo_materialmobile_message = 0x7f030021;
-		public static final int list_card_undo_message = 0x7f030022;
-		public static final int row_card = 0x7f030026;
+		public static final int list_card_layout = 0x7f03001f;
+		public static final int list_card_thumbnail_layout = 0x7f030020;
+		public static final int list_card_undo_material_message = 0x7f030021;
+		public static final int list_card_undo_materialmobile_message = 0x7f030022;
+		public static final int list_card_undo_message = 0x7f030023;
+		public static final int row_card = 0x7f030027;
 	}
 	public static final class plurals {
 		public static final int card_selected_items = 0x7f0b0001;
