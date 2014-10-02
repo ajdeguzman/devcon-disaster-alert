@@ -1,9 +1,11 @@
 package com.devcon.devise;
 
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -26,6 +28,14 @@ public class SubmitPhoto extends Activity {
 		txtTitle = (EditText)findViewById(R.id.txtTitle);
 		txtDescription = (EditText)findViewById(R.id.txtDescription);
 		Parse.initialize(this, APP_ID, CLIENT_KEY);
+	}
+	private class LoadTask extends AsyncTask<String,String,String>{
+
+		@Override
+		protected String doInBackground(String... arg0) {
+			return null;
+		}
+		
 	}
 	@Override
 	public void onStart(){
