@@ -5,16 +5,13 @@ import java.io.ByteArrayOutputStream;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationManager;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.parse.Parse;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
@@ -26,23 +23,21 @@ public class SubmitPhoto extends Activity {
 	final String CLIENT_KEY = "R3ww5CExVqUo9LCo13d4dO2mhNA1RHicuTcGpnLf";
 	Bitmap bitmap;
 	EditText txtTitle, txtDescription;
-	private ProgressDialog pd; 
+	private ProgressDialog pd;
+	GPSTracker gps;
+	double latitude,longitude;
+	Geocoder geocoder;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_submit_photo);
 		txtTitle = (EditText)findViewById(R.id.txtTitle);
 		txtDescription = (EditText)findViewById(R.id.txtDescription);
+        gps = new GPSTracker(SubmitPhoto.this);
 		Parse.initialize(this, APP_ID, CLIENT_KEY);
 	}
-	public LatLng getLocation(){
-		LocationManager locationManager=(LocationManager) getSystemService(LOCATION_SERVICE);
-		Criteria criteria = new Criteria();
-		String provider = locationManager.getBestProvider(criteria, true);
-		Location myLocation = locationManager.getLastKnownLocation(provider);
-		LatLng location = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
-		return location;
-	}
+	
 	@Override
 	public void onStart(){
 		super.onStart();
@@ -63,14 +58,20 @@ public class SubmitPhoto extends Activity {
 		    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 		    // get byte array here
 		   byte[] bytearray= stream.toByteArray();
-		   
+		   if(gps.canGetLocation()){
+	             
+	            latitude = gps.getLatitude();
+	            longitude = gps.getLongitude();
+	         }else{
+	            gps.showSettingsAlert();
+	        }
 		   ParseObject user = new ParseObject("Places");
 		   ParseGeoPoint location = new ParseGeoPoint();
-		 //  location.setLatitude(getLocation().latitude);
-		 // location.setLongitude(getLocation().longitude);
+		   location.setLatitude(latitude);
+		   location.setLongitude(longitude);
 		   user.put("title", txtTitle.getText().toString());
 		   user.put("description", txtDescription.getText().toString());
-		  // user.put("points", location);
+		   user.put("points", location);
 		    if (bytearray != null){
 		        ParseFile file = new ParseFile(txtTitle.getText().toString().toLowerCase()+".png",bytearray);
 		        file.saveInBackground();
