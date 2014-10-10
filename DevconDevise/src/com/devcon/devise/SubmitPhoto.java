@@ -1,29 +1,23 @@
 package com.devcon.devise;
 
-import it.gmariotti.cardslib.library.internal.CardThumbnail;
-
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.SimpleAdapter;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.parse.Parse;
 import com.parse.ParseFile;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 
 public class SubmitPhoto extends Activity {
@@ -41,13 +35,13 @@ public class SubmitPhoto extends Activity {
 		txtDescription = (EditText)findViewById(R.id.txtDescription);
 		Parse.initialize(this, APP_ID, CLIENT_KEY);
 	}
-	private class LoadTask extends AsyncTask<String,String,String>{
-
-		@Override
-		protected String doInBackground(String... arg0) {
-			return null;
-		}
-		
+	public LatLng getLocation(){
+		LocationManager locationManager=(LocationManager) getSystemService(LOCATION_SERVICE);
+		Criteria criteria = new Criteria();
+		String provider = locationManager.getBestProvider(criteria, true);
+		Location myLocation = locationManager.getLastKnownLocation(provider);
+		LatLng location = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+		return location;
 	}
 	@Override
 	public void onStart(){
@@ -71,8 +65,12 @@ public class SubmitPhoto extends Activity {
 		   byte[] bytearray= stream.toByteArray();
 		   
 		   ParseObject user = new ParseObject("Places");
+		   ParseGeoPoint location = new ParseGeoPoint();
+		 //  location.setLatitude(getLocation().latitude);
+		 // location.setLongitude(getLocation().longitude);
 		   user.put("title", txtTitle.getText().toString());
 		   user.put("description", txtDescription.getText().toString());
+		  // user.put("points", location);
 		    if (bytearray != null){
 		        ParseFile file = new ParseFile(txtTitle.getText().toString().toLowerCase()+".png",bytearray);
 		        file.saveInBackground();
