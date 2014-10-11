@@ -1,10 +1,16 @@
 package com.devcon.devise;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -199,53 +205,6 @@ public class GPSTracker extends Service implements LocationListener {
         return null;
     }
 	
-	
-	public String ConvertPointToLocation(GeoPoint point) {   
-            String address = "";
-            Geocoder geoCoder = new Geocoder(
-                    getBaseContext(), Locale.getDefault());
-            try {
-                List<Address> addresses = geoCoder.getFromLocation(
-                    point.getLatitudeE6()  / 1E6, 
-                    point.getLongitudeE6() / 1E6, 1);
-
-                if (addresses.size() > 0) {
-                    for (int index = 0; index < addresses.get(0).getMaxAddressLineIndex(); index++)
-                        address += addresses.get(0).getAddressLine(index) + " ";
-                }
-            }
-            catch (IOException e) {                
-                e.printStackTrace();
-            }   
-
-            return address;
-    } 
-	
-	class MapOverlay extends Overlay
-    {
-        private GeoPoint pointToDraw;
-
-        public void setPointToDraw(GeoPoint point) {
-            pointToDraw = point;
-        }
-
-        public GeoPoint getPointToDraw() {
-            return pointToDraw;
-        }
-
-        @Override
-        public boolean draw(Canvas canvas, MapView mapView, boolean shadow, long when) {
-            super.draw(canvas, mapView, shadow);                   
-
-            // convert point to pixels
-            Point screenPts = new Point();
-            mapView.getProjection().toPixels(pointToDraw, screenPts);
-
-            // add marker
-            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.red);
-            canvas.drawBitmap(bmp, screenPts.x, screenPts.y - 24, null); // 24 is the height of image        
-            return true;
-        }
-    } 
+   
  
 }

@@ -10,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 
 import com.parse.LogInCallback;
@@ -82,8 +84,14 @@ public class Login extends Activity {
 			alt.show();
 	}
 	public void attemptLogin(){
-		username = txtUsername.getText().toString();
-		password = txtPword.getText().toString();
+		if(isEmpty(txtUsername)){
+			Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
+ 	        findViewById(R.id.txtusername).startAnimation(shake);
+		}
+		if(isEmpty(txtPword)){
+			Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
+ 	        findViewById(R.id.txtpassword).startAnimation(shake);
+		}
 		if(!isEmpty(txtUsername) && !isEmpty(txtPword)){
 			showProgressBar("Logging in...");
 			login(username.toLowerCase(Locale.getDefault()), password);

@@ -9,10 +9,12 @@ package com.devcon.devise;
 
 public final class R {
     public static final class anim {
-        public static final int slide_in_from_bottom=0x7f040000;
-        public static final int slide_in_from_top=0x7f040001;
-        public static final int slide_out_to_bottom=0x7f040002;
-        public static final int slide_out_to_top=0x7f040003;
+        public static final int cycle_7=0x7f040000;
+        public static final int shake=0x7f040001;
+        public static final int slide_in_from_bottom=0x7f040002;
+        public static final int slide_in_from_top=0x7f040003;
+        public static final int slide_out_to_bottom=0x7f040004;
+        public static final int slide_out_to_top=0x7f040005;
     }
     public static final class array {
         public static final int arr_disaster_items=0x7f0e0002;
