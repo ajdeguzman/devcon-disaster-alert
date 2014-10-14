@@ -33,9 +33,9 @@
 		    
 		    <EditText
 		        android:id="@+id/txtTitle"
+		        android:hint="Enter Title"
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content" >
-		        <requestFocus />
 		    </EditText>
 		    <TextView
 		        android:id="@+id/textView3"
@@ -48,13 +48,33 @@
 		        android:textAppearance="?android:attr/textAppearanceSmall"
 		        android:textColor="#163F5F"
 		        android:textStyle="bold" />
-		    
 		    <EditText
 		        android:id="@+id/txtDescription"
 		        android:singleLine="false"
 		        android:maxLength="250"
+		        android:hint="Add Description"
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content" >
+		    </EditText>
+		    <TextView
+		        android:id="@+id/textView4"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="5sp"
+		        android:layout_marginTop="5dp"
+		        android:paddingTop="5dp"
+		        android:text="YOUR LOCATION"
+		        android:textAppearance="?android:attr/textAppearanceSmall"
+		        android:textColor="#163F5F"
+		        android:textStyle="bold" />
+
+		    <EditText
+		        android:id="@+id/txtLocation"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:ems="10" >
+
+		        <requestFocus />
 		    </EditText>
 		
 		    <Button

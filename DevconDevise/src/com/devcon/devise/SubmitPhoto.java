@@ -31,7 +31,7 @@ public class SubmitPhoto extends Activity {
 	final String APP_ID = "GBdi0gjuAzS7MilcllE4vgMpEaJ8NdFCGsLMIJci";
 	final String CLIENT_KEY = "R3ww5CExVqUo9LCo13d4dO2mhNA1RHicuTcGpnLf";
 	Bitmap bitmap;
-	EditText txtTitle, txtDescription;
+	EditText txtTitle, txtDescription, txtLocation;
 	private ProgressDialog pd;
 	GPSTracker gps;
 	double latitude,longitude;
@@ -43,6 +43,7 @@ public class SubmitPhoto extends Activity {
 		setContentView(R.layout.activity_submit_photo);
 		txtTitle = (EditText)findViewById(R.id.txtTitle);
 		txtDescription = (EditText)findViewById(R.id.txtDescription);
+		txtLocation = (EditText)findViewById(R.id.txtLocation);
         gps = new GPSTracker(SubmitPhoto.this);
 		Parse.initialize(this, APP_ID, CLIENT_KEY);
 	}
@@ -73,6 +74,13 @@ public class SubmitPhoto extends Activity {
 		img = (ImageView) findViewById(R.id.imageView1);
 		bitmap = (Bitmap) getIntent().getParcelableExtra("Image");
 		img.setImageBitmap(bitmap);
+		if(gps.canGetLocation()){
+	        latitude = gps.getLatitude();
+	        longitude = gps.getLongitude();
+	        txtLocation.setText(convertPointToLocation(latitude, longitude));
+	    }else{
+	      gps.showSettingsAlert();
+	    }
 	}
  	private boolean isEmpty(EditText txt) {
  	    if (txt.getText().toString().trim().length() > 0) {
@@ -106,7 +114,7 @@ public class SubmitPhoto extends Activity {
 	
 	            if (addresses.size() > 0) {
 	                for (int index = 0; index < addresses.get(0).getMaxAddressLineIndex(); index++)
-	                    address += addresses.get(0).getAddressLine(index) + ", ";
+	                    address += addresses.get(0).getAddressLine(index);
 	            }
 	        }
 	        catch (IOException e) {                
@@ -139,7 +147,9 @@ public class SubmitPhoto extends Activity {
         }
         return strAdd;
     }*/
-	private class SubmitPhotoTask extends AsyncTask<String,String,String>{
+
+	 
+	 private class SubmitPhotoTask extends AsyncTask<String,String,String>{
 		@Override
 		protected String doInBackground(String... arg0) {
 

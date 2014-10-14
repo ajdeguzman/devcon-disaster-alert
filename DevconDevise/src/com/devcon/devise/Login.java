@@ -21,7 +21,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 public class Login extends Activity {
-	EditText txtUsername, txtPword;
+	EditText txtusername, txtpassword;
 	String username, password;
 	final String APPLICATION_ID = "GBdi0gjuAzS7MilcllE4vgMpEaJ8NdFCGsLMIJci";
 	final String CLIENT_KEY = "R3ww5CExVqUo9LCo13d4dO2mhNA1RHicuTcGpnLf";
@@ -34,8 +34,8 @@ public class Login extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		txtUsername = (EditText)findViewById(R.id.txtusername);
-		txtPword = (EditText)findViewById(R.id.txtpassword);
+		txtusername = (EditText)findViewById(R.id.txtusername);
+		txtpassword = (EditText)findViewById(R.id.txtpassword);
 		getActionBar().hide();
 		
         onCreateParse();
@@ -84,15 +84,17 @@ public class Login extends Activity {
 			alt.show();
 	}
 	public void attemptLogin(){
-		if(isEmpty(txtUsername)){
+		username = txtusername.getText().toString();
+		password = txtpassword.getText().toString();
+		if(isEmpty(txtusername)){
 			Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
  	        findViewById(R.id.txtusername).startAnimation(shake);
 		}
-		if(isEmpty(txtPword)){
+		if(isEmpty(txtpassword)){
 			Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
  	        findViewById(R.id.txtpassword).startAnimation(shake);
 		}
-		if(!isEmpty(txtUsername) && !isEmpty(txtPword)){
+		if(!isEmpty(txtusername) && !isEmpty(txtpassword)){
 			showProgressBar("Logging in...");
 			login(username.toLowerCase(Locale.getDefault()), password);
 		}

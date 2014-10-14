@@ -30,7 +30,7 @@ public class BigClusteringDemoActivity extends BaseDemoActivity {
     }
 
     private void readItems() throws JSONException {
-        InputStream inputStream = getResources().openRawResource(R.raw.radar_search);
+        InputStream inputStream = getResources().openRawResource(R.raw.haha);
         List<MyItem> items = new MyItemReader().read(inputStream);
         for (int i = 0; i < 10; i++) {
             double offset = i / 60d;

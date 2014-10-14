@@ -220,9 +220,9 @@ containing a value of this type.
         public static final int text_bubble=0x7f030006;
     }
     public static final class raw {
-        public static final int medicare=0x7f040000;
-        public static final int police=0x7f040001;
-        public static final int radar_search=0x7f040002;
+        public static final int haha=0x7f040000;
+        public static final int medicare=0x7f040001;
+        public static final int police=0x7f040002;
     }
     public static final class string {
         public static final int app_name=0x7f070015;

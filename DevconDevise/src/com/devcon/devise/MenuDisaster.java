@@ -8,9 +8,8 @@ import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,14 +33,30 @@ import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.google.maps.android.ui.IconGenerator;
+import com.parse.FindCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 public class MenuDisaster extends Fragment implements ClusterManager.OnClusterClickListener<Person>, ClusterManager.OnClusterInfoWindowClickListener<Person>, ClusterManager.OnClusterItemClickListener<Person>, ClusterManager.OnClusterItemInfoWindowClickListener<Person> {
 	
 	public MenuDisaster(){}
 	private GoogleMap map;
 	private Spinner spinnerDisasterType;
+    public ClusterManager<Person> mClusterManager;
+    private List<LatLng> positions;
+
+	final String APPLICATION_ID = "GBdi0gjuAzS7MilcllE4vgMpEaJ8NdFCGsLMIJci";
+	final String CLIENT_KEY = "R3ww5CExVqUo9LCo13d4dO2mhNA1RHicuTcGpnLf";
+	
+	Boolean isInternetPresent = false;
+	ConnectionDetector cd;
+	
+	List<ParseObject> obj;
+
     private Random mRandom = new Random(1984);
-    private ClusterManager<Person> mClusterManager;
     
 	private LatLngBounds PHILIPPINES = new LatLngBounds(new LatLng(4.6145711,119.6272661), new LatLng(19.966096,124.173694));
 	private static View view;
@@ -52,12 +67,15 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
             if (parent != null)
                 parent.removeView(view);
         }
+        cd  =  new ConnectionDetector(getActivity());
         try {
             view = inflater.inflate(R.layout.layout_disaster, container, false);
-            if(checkInternetConnection()){
-            	initializeMap();
-            }else{
-            	Toast.makeText(getActivity(), "Check your internet connection", Toast.LENGTH_LONG).show();
+            isInternetPresent = cd.isConnectingToInternet();
+    		if (isInternetPresent) {
+    			initializeMap();
+    			Parse.initialize(getActivity(), APPLICATION_ID, CLIENT_KEY);
+    		}else{
+            	Toast.makeText(getActivity(), "Please check your internet connection and try again.", Toast.LENGTH_LONG).show();
             }
         } catch (InflateException e) {
             /* map is already there, just return view as it is */
@@ -94,24 +112,10 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
 	@Override
 	public void onResume() {
 		super.onResume();
-		if(checkInternetConnection()){
-        	initializeMap();
-        }
-	}
-	private boolean checkInternetConnection(){
-		   boolean connected = false;
-		      ConnectivityManager check = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-		      if (check != null) 
-		      {
-		         NetworkInfo[] info = check.getAllNetworkInfo();
-		         if (info != null) 
-		            for (int i = 0; i <info.length; i++) 
-		            if (info[i].getState() == NetworkInfo.State.CONNECTED)
-		            {
-		            	connected = true;
-		            }
-		      }
-		      return connected;
+		isInternetPresent = cd.isConnectingToInternet();
+		if (isInternetPresent) {
+			initializeMap();
+		}
 	}
 	private class PersonRenderer extends DefaultClusterRenderer<Person> {
         private final IconGenerator mIconGenerator = new IconGenerator(getActivity());
@@ -170,23 +174,42 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
         }
     }
 	private void addItems() {
-        mClusterManager.addItem(new Person(position(), "Disaster 1", R.drawable.a));
-        mClusterManager.addItem(new Person(position(), "Disaster 2", R.drawable.b));
-        mClusterManager.addItem(new Person(position(), "Disaster 3", R.drawable.c));
-        mClusterManager.addItem(new Person(position(), "Disaster 4", R.drawable.d));
-        mClusterManager.addItem(new Person(position(), "Disaster 5", R.drawable.e));
-        mClusterManager.addItem(new Person(position(), "Disaster 6", R.drawable.f));
-        mClusterManager.addItem(new Person(position(), "Disaster 7", R.drawable.g));
-        mClusterManager.addItem(new Person(position(), "Disaster 8", R.drawable.h));
-        mClusterManager.addItem(new Person(position(), "Disaster 9", R.drawable.h));
-    }
-    private LatLng position() {
-        return new LatLng(random(5.5158016,117.9349218), random(20.176906,123.5187749));
+		ParseQuery<ParseObject> query = ParseQuery.getQuery("Places");
+		query.setLimit(1000);
+		query.findInBackground(new FindCallback<ParseObject>(){
+			@Override
+			public void done(List<ParseObject> list, ParseException e) {
+				ParseGeoPoint geo = new ParseGeoPoint();
+				if (e == null) 
+	            {
+					for(int i = 0; i < list.size(); i++){
+						geo = list.get(i).getParseGeoPoint("points");
+						LatLng latlng = new LatLng(geo.getLatitude()*1E6, geo.getLongitude()*1E6);
+						positions.add(latlng);
+					}
+					
+	            }
+	            else 
+	            {
+	                Log.d("Post retrieval", "Error: " + e.getMessage());
+	            }
+
+			}
+			
+		});
+
+		for(int i = 0; i < positions.size(); i++){
+			 mClusterManager.addItem(new Person(positions.get(i), "Disaster 1", R.drawable.a));
+		}
     }
 
-    private double random(double min, double max) {
-        return mRandom.nextDouble() * (max - min) + min;
-    }
+	  private LatLng position() {
+	        return new LatLng(random(5.5158016,117.9349218), random(20.176906,123.5187749));
+	    }
+
+	    private double random(double min, double max) {
+	        return mRandom.nextDouble() * (max - min) + min;
+	    }
     @Override
     public boolean onClusterClick(Cluster<Person> cluster) {
         String firstName = cluster.getItems().iterator().next().name;

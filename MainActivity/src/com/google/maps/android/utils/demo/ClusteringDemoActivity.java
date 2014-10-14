@@ -34,7 +34,7 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
     }
 
     private void readItems() throws JSONException {
-        InputStream inputStream = getResources().openRawResource(R.raw.radar_search);
+        InputStream inputStream = getResources().openRawResource(R.raw.haha);
         List<MyItem> items = new MyItemReader().read(inputStream);
         mClusterManager.addItems(items);
     }
