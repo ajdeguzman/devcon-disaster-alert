@@ -116,7 +116,7 @@ public class SubmitPhoto extends Activity {
 	
 	            if (addresses.size() > 0) {
 	                for (int index = 0; index < addresses.get(0).getMaxAddressLineIndex(); index++)
-	                    address += addresses.get(0).getAddressLine(index);
+	                    address += addresses.get(0).getAddressLine(index) + " ";
 	            }
 	        }
 	        catch (IOException e) {                

@@ -2,11 +2,12 @@ package com.devcon.devise;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,9 +34,10 @@ import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.google.maps.android.ui.IconGenerator;
-import com.parse.FindCallback;
+import com.parse.GetDataCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -53,6 +55,7 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
 	Boolean isInternetPresent = false;
 	ConnectionDetector cd;
 	List<ParseObject> obj;
+	Bitmap bmp;
     
 	private LatLngBounds PHILIPPINES = new LatLngBounds(new LatLng(4.6145711,119.6272661), new LatLng(19.966096,124.173694));
 	private static View view;
@@ -139,9 +142,9 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
         protected void onBeforeClusterItemRendered(Person person, MarkerOptions markerOptions) {
             // Draw a single person.
             // Set the info window to show their name.
-            mImageView.setImageResource(person.profilePhoto);
+            mImageView.setImageBitmap(person.profilePhoto);
             Bitmap icon = mIconGenerator.makeIcon();
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon)).title(person.name);
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon)).snippet(person.snippet).title(person.name);
         }
 
         @Override
@@ -152,7 +155,8 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
 
             for (Person p : cluster.getItems()) {
                 if (profilePhotos.size() == 4) break;
-                Drawable drawable = getResources().getDrawable(p.profilePhoto);
+                Drawable d = new BitmapDrawable(getResources(), p.profilePhoto);
+                Drawable drawable = d;
                 drawable.setBounds(0, 0, width, height);
                 profilePhotos.add(drawable);
             }
@@ -180,8 +184,18 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
          }
 		for (ParseObject geo : obj) {
 			ParseGeoPoint g  = geo.getParseGeoPoint("points");
+			ParseFile fileObject = (ParseFile)geo.get("image");
+		     fileObject.getDataInBackground(new GetDataCallback() {
+		         public void done(byte[] data, ParseException e) {
+		           if (e == null) {
+		        	   bmp = BitmapFactory.decodeByteArray(data, 0,data.length);
+		           } else {
+		             Toast.makeText(getActivity(), "There was a problem downloading the data." , Toast.LENGTH_SHORT).show();
+		           }
+		         }
+		       });
 			LatLng latlng = new LatLng(g.getLatitude(), g.getLongitude());
-			mClusterManager.addItem(new Person(latlng, "Disaster 1", R.drawable.a));
+			mClusterManager.addItem(new Person(latlng, geo.getString("title"), geo.getString("address"), bmp));
 		}
     }
     @Override
