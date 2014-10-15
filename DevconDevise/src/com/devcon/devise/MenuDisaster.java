@@ -46,17 +46,13 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
 	private GoogleMap map;
 	private Spinner spinnerDisasterType;
     public ClusterManager<Person> mClusterManager;
-    private List<LatLng> positions;
 
 	final String APPLICATION_ID = "GBdi0gjuAzS7MilcllE4vgMpEaJ8NdFCGsLMIJci";
 	final String CLIENT_KEY = "R3ww5CExVqUo9LCo13d4dO2mhNA1RHicuTcGpnLf";
 	
 	Boolean isInternetPresent = false;
 	ConnectionDetector cd;
-	
 	List<ParseObject> obj;
-
-    private Random mRandom = new Random(1984);
     
 	private LatLngBounds PHILIPPINES = new LatLngBounds(new LatLng(4.6145711,119.6272661), new LatLng(19.966096,124.173694));
 	private static View view;
@@ -176,40 +172,18 @@ public class MenuDisaster extends Fragment implements ClusterManager.OnClusterCl
 	private void addItems() {
 		ParseQuery<ParseObject> query = ParseQuery.getQuery("Places");
 		query.setLimit(1000);
-		query.findInBackground(new FindCallback<ParseObject>(){
-			@Override
-			public void done(List<ParseObject> list, ParseException e) {
-				ParseGeoPoint geo = new ParseGeoPoint();
-				if (e == null) 
-	            {
-					for(int i = 0; i < list.size(); i++){
-						geo = list.get(i).getParseGeoPoint("points");
-						LatLng latlng = new LatLng(geo.getLatitude()*1E6, geo.getLongitude()*1E6);
-						positions.add(latlng);
-					}
-					
-	            }
-	            else 
-	            {
-	                Log.d("Post retrieval", "Error: " + e.getMessage());
-	            }
-
-			}
-			
-		});
-
-		for(int i = 0; i < positions.size(); i++){
-			 mClusterManager.addItem(new Person(positions.get(i), "Disaster 1", R.drawable.a));
+		 try {
+             obj = query.find();
+         } catch (ParseException e) {
+             Log.e("Error", e.getMessage());
+             e.printStackTrace();
+         }
+		for (ParseObject geo : obj) {
+			ParseGeoPoint g  = geo.getParseGeoPoint("points");
+			LatLng latlng = new LatLng(g.getLatitude(), g.getLongitude());
+			mClusterManager.addItem(new Person(latlng, "Disaster 1", R.drawable.a));
 		}
     }
-
-	  private LatLng position() {
-	        return new LatLng(random(5.5158016,117.9349218), random(20.176906,123.5187749));
-	    }
-
-	    private double random(double min, double max) {
-	        return mRandom.nextDouble() * (max - min) + min;
-	    }
     @Override
     public boolean onClusterClick(Cluster<Person> cluster) {
         String firstName = cluster.getItems().iterator().next().name;

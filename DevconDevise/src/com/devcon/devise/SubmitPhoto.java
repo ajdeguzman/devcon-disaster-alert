@@ -36,7 +36,9 @@ public class SubmitPhoto extends Activity {
 	GPSTracker gps;
 	double latitude,longitude;
 	List<Address> addresses;
-	
+
+	private static final String JPEG_FILE_PREFIX = "IMG_";
+	private static final String JPEG_FILE_SUFFIX = ".jpg";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
